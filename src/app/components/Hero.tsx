@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowDown, ArrowRight, Download, Building2, Cpu, DollarSign } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { withBasePath } from '../utils/withBasePath';
 
 const keyPoints = [
   {
@@ -21,11 +22,14 @@ const keyPoints = [
 ];
 
 export function Hero() {
+  const heroImage = withBasePath('/materials/brandbook-media/image40.png');
+  const presentationPdf = withBasePath('/materials/assosiation-3.pdf');
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" id="about">
       <div className="absolute inset-0">
         <ImageWithFallback
-          src="/materials/brandbook-media/image40.png"
+          src={heroImage}
           alt="Технологический фон Ассоциации"
           className="w-full h-full object-cover"
         />
@@ -84,7 +88,7 @@ export function Hero() {
               </motion.a>
 
               <motion.a
-                href="/materials/assosiation-3.pdf"
+                href={presentationPdf}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}

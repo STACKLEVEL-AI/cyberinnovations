@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, ArrowUpRight } from 'lucide-react';
 import logo from '../../../logos/Logo-ACI-RUS.ver2.svg';
+import { withBasePath } from '../utils/withBasePath';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const presentationPdf = withBasePath('/materials/assosiation-3.pdf');
 
   const navLinks = [
     { label: 'О нас', href: '#about' },
@@ -66,7 +68,7 @@ export function Footer() {
               </p>
 
               <a
-                href="/materials/assosiation-3.pdf"
+                href={presentationPdf}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#F3F4E9]/75 hover:text-[#5F891D] transition-colors"

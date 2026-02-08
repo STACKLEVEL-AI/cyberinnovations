@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ArrowUpRight, MapPin, Users, Rocket, Server, Globe } from 'lucide-react';
+import { withBasePath } from '../utils/withBasePath';
 
 interface Achievement {
   title: string;
@@ -19,7 +20,7 @@ const achievements: Achievement[] = [
       'Совместная проработка архитектуры вычислительной инфраструктуры с участием представителей бизнеса, экспертного сообщества и профильных государственных структур.',
     date: '2025–2026',
     location: 'Минск, Республика Беларусь',
-    image: '/materials/brandbook-media/image26.png',
+    image: withBasePath('/materials/brandbook-media/image26.png'),
     participants: 'Профильные рабочие группы',
     highlight: 'Ключевой проект',
   },
@@ -29,7 +30,7 @@ const achievements: Achievement[] = [
       'Формирование международного и национального партнерского контура Ассоциации, включая взаимодействие с BRICS Pay и смежными отраслевыми организациями.',
     date: 'Регулярно',
     location: 'Беларусь / Международные площадки',
-    image: '/materials/brandbook-media/image39.png',
+    image: withBasePath('/materials/brandbook-media/image39.png'),
   },
   {
     title: 'Круглые столы по нормативной и инвестиционной повестке',
@@ -37,7 +38,7 @@ const achievements: Achievement[] = [
       'Организация тематических обсуждений для согласования интересов государства, науки, инвесторов и технологических компаний.',
     date: 'Ежеквартально',
     location: 'Минск, Республика Беларусь',
-    image: '/materials/brandbook-media/image40.png',
+    image: withBasePath('/materials/brandbook-media/image40.png'),
     participants: 'Эксперты и члены Ассоциации',
   },
 ];

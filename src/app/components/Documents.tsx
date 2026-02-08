@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { FileText, Download, Send, CircleCheck, ArrowRight, BookOpen, Award, FileCheck } from 'lucide-react';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
+import { withBasePath } from '../utils/withBasePath';
 
 interface Document {
   title: string;
@@ -40,7 +41,7 @@ const documents: Document[] = [
     description: 'Актуальный обзор целей, направлений и приоритетов',
     icon: FileText,
     size: '2.3 MB',
-    href: '/materials/assosiation-3.pdf',
+    href: withBasePath('/materials/assosiation-3.pdf'),
     available: true,
   },
   {
@@ -48,7 +49,7 @@ const documents: Document[] = [
     description: 'Визуальные материалы и фирменные носители',
     icon: FileText,
     size: '24.9 MB',
-    href: '/materials/brandbook.pptx',
+    href: withBasePath('/materials/brandbook.pptx'),
     available: true,
   },
 ];

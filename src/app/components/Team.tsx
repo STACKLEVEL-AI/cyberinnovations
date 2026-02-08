@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ArrowUpRight } from 'lucide-react';
+import { withBasePath } from '../utils/withBasePath';
 
 interface TeamMember {
   name: string;
@@ -14,25 +15,25 @@ const teamMembers: TeamMember[] = [
     name: 'ФИО — на утверждении',
     role: 'Председатель Ассоциации',
     description: 'Координация взаимодействия с государственными органами и развитие межотраслевого партнерства.',
-    image: '/materials/brandbook-media/image31.png',
+    image: withBasePath('/materials/brandbook-media/image31.png'),
   },
   {
     name: 'ФИО — на утверждении',
     role: 'Руководитель технологических подкомитетов',
     description: 'Управление профильными направлениями: AI, Blockchain, IoT, Cybersecurity, Cloud, Energy.',
-    image: '/materials/brandbook-media/image28.png',
+    image: withBasePath('/materials/brandbook-media/image28.png'),
   },
   {
     name: 'ФИО — на утверждении',
     role: 'Руководитель инвестиционного трека',
     description: 'Развитие программы партнерского финансирования и сопровождение инвестиционных инициатив.',
-    image: '/materials/brandbook-media/image29.png',
+    image: withBasePath('/materials/brandbook-media/image29.png'),
   },
   {
     name: 'ФИО — на утверждении',
     role: 'Руководитель образовательных и международных программ',
     description: 'Развитие кадрового резерва и международной повестки Ассоциации.',
-    image: '/materials/brandbook-media/image30.png',
+    image: withBasePath('/materials/brandbook-media/image30.png'),
   },
 ];
 
