@@ -1,0 +1,39 @@
+/* Bebas Neue font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* Bebas Neue Cyrillic - если доступен локально, иначе будет использоваться базовый Bebas Neue */
+/* Для локального подключения создайте папку fonts и добавьте файлы шрифтов */
+
+/* Spectre & Filena - кастомные шрифты, требующие локальной загрузки */
+/* При необходимости добавьте @font-face для локальных файлов */
+
+:root {
+  /* Font families */
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-spectre: 'Spectre', sans-serif;
+  --font-filena: 'Filena', sans-serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bebas);
+  letter-spacing: 0.02em;
+}
+
+/* Utility classes for fonts */
+.font-bebas {
+  font-family: var(--font-bebas);
+}
+
+.font-spectre {
+  font-family: var(--font-spectre), var(--font-sans);
+}
+
+.font-filena {
+  font-family: var(--font-filena), var(--font-sans);
+}
+
