@@ -84,7 +84,6 @@ const roleLabelByValue: Record<string, string> = {
   media: 'СМИ',
   expert: 'Эксперт',
   volunteer: 'Волонтер',
-  interested: 'Заинтересованный пользователь',
 };
 
 const defaultRoleValue = 'company';
@@ -132,6 +131,7 @@ export function Documents() {
 
   return (
     <section className="py-24 relative overflow-hidden" id="documents">
+      <div id="membership" className="relative -top-24" />
       <div className="absolute inset-0 bg-[#F3F4E9]" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#151515]/10 to-transparent" />
 
@@ -285,12 +285,10 @@ export function Documents() {
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
                 <h3 className="text-3xl md:text-4xl font-bold text-[#F3F4E9] font-bebas tracking-wide mb-4">
-                  Оставить заявку
-                  <br />
-                  на взаимодействие
+                  Заявка на сотрудничество
                 </h3>
                 <p className="text-[#F3F4E9]/62 leading-relaxed mb-8">
-                  Выберите роль и отправьте запрос — мы предложим оптимальный формат: членство, партнёрство, экспертная проработка или участие в проекте.
+                  Оставьте контакты и кратко опишите запрос — мы предложим формат: членство, партнёрство, экспертная проработка или участие в проекте.
                 </p>
 
                 <div className="space-y-4">
@@ -374,7 +372,6 @@ export function Documents() {
                         <option value="media">СМИ</option>
                         <option value="expert">Эксперт</option>
                         <option value="volunteer">Волонтер</option>
-                        <option value="interested">Заинтересованный пользователь</option>
                       </select>
                     </div>
 

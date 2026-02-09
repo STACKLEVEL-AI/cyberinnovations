@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { ArrowUpRight } from 'lucide-react';
 import { withBasePath } from '../utils/withBasePath';
 
 interface TeamMember {
@@ -15,25 +14,26 @@ const teamMembers: TeamMember[] = [
     name: 'ФИО — на утверждении',
     role: 'Председатель Ассоциации',
     description: 'Координация взаимодействия с государственными органами и развитие межотраслевого партнерства.',
-    image: withBasePath('/materials/brandbook-media/image31.png'),
+    image: withBasePath('/materials/placeholders/expert-01.png'),
   },
   {
     name: 'ФИО — на утверждении',
     role: 'Руководитель технологических подкомитетов',
-    description: 'Управление профильными направлениями: AI, Blockchain, IoT, Cybersecurity, Cloud, Energy.',
-    image: withBasePath('/materials/brandbook-media/image28.png'),
+    description:
+      'Координация технологических подкомитетов: ИИ, блокчейн, IoT, кибербезопасность, микроэлектроника и робототехника, вычислительная инфраструктура, энергетика, подготовка кадров.',
+    image: withBasePath('/materials/placeholders/expert-02.png'),
   },
   {
     name: 'ФИО — на утверждении',
     role: 'Руководитель инвестиционного трека',
     description: 'Развитие программы партнерского финансирования и сопровождение инвестиционных инициатив.',
-    image: withBasePath('/materials/brandbook-media/image29.png'),
+    image: withBasePath('/materials/placeholders/expert-03.png'),
   },
   {
     name: 'ФИО — на утверждении',
     role: 'Руководитель образовательных и международных программ',
     description: 'Развитие кадрового резерва и международной повестки Ассоциации.',
-    image: withBasePath('/materials/brandbook-media/image30.png'),
+    image: withBasePath('/materials/placeholders/expert-04.png'),
   },
 ];
 
@@ -54,7 +54,7 @@ export function Team() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-[#5F891D]" />
-              <span className="text-[#5F891D] text-sm tracking-[0.2em] uppercase font-medium">Команда</span>
+              <span className="text-[#5F891D] text-sm tracking-[0.2em] uppercase font-medium">Эксперты ассоциации</span>
             </div>
 
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#151515] font-bebas leading-[0.95]">
@@ -71,8 +71,8 @@ export function Team() {
             className="flex items-end"
           >
             <p className="text-lg text-[#151515]/65 leading-relaxed">
-              Блок команды подготовлен для публикации ФИО, фотографий и тайтлов. Это позволит прозрачно показать, кто
-              отвечает за реализацию приоритетов Ассоциации.
+              Руководящий состав и ответственные по ключевым трекам публикуются здесь — чтобы партнёрам было понятно, кто
+              принимает решения, ведёт проекты и куда обращаться по вопросам экспертизы, пилотов и участия.
             </p>
           </motion.div>
         </div>
@@ -110,40 +110,6 @@ export function Team() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-3xl overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-[#151515]" />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#5F68A5]/12 via-transparent to-[#5F891D]/12" />
-
-          <div className="relative z-10 p-10 md:p-14 grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-3xl md:text-4xl font-bold text-[#F3F4E9] font-bebas tracking-wide mb-4">
-                Сильная команда усиливает доверие
-              </h3>
-              <p className="text-[#F3F4E9]/65 leading-relaxed">
-                После утверждения персонального состава здесь будут опубликованы ФИО, фото и профильные компетенции
-                руководителей направлений.
-              </p>
-            </div>
-
-            <div className="flex md:justify-end">
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#5F891D] text-[#151515] font-bold rounded-full hover:bg-[#5F891D]/90 transition-colors"
-              >
-                <span>Запросить презентацию команды</span>
-                <ArrowUpRight className="w-5 h-5" />
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

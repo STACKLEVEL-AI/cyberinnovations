@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { ArrowUpRight, MapPin, Users, Rocket, Server, Globe } from 'lucide-react';
+import { ArrowUpRight, MapPin, Users, Rocket, Server, Globe, Calendar } from 'lucide-react';
 import { withBasePath } from '../utils/withBasePath';
 
 interface Achievement {
@@ -43,34 +43,42 @@ const achievements: Achievement[] = [
   },
 ];
 
-const projects = [
+interface Project {
+  title: string;
+  status: string;
+  description: string;
+  icon: React.ElementType;
+  deadline: string;
+}
+
+const projects: Project[] = [
   {
     title: 'BELARUS AI DATA CENTER',
     status: 'Проектирование инфраструктуры',
     description: 'Создаём национальный контур вычислительных мощностей для ИИ-проектов и прикладных исследований.',
     icon: Server,
-    progress: 35,
+    deadline: 'II кв. 2026 (план)',
   },
   {
     title: 'Партнёрское финансирование',
-    status: 'Подготовка запуска в 2026',
+    status: 'Подготовка запуска',
     description: 'Механика отбора и финансирования проектов: экспертиза, критерии, сопровождение до пилота и масштабирования.',
     icon: Users,
-    progress: 60,
+    deadline: 'IV кв. 2026 (план)',
   },
   {
     title: 'Международная конференция',
     status: 'Формирование деловой программы',
     description: 'Площадка по конвергентным технологиям: кейсы внедрения, стандарты, инвестиции, экспорт.',
     icon: Globe,
-    progress: 20,
+    deadline: 'III кв. 2026 (план)',
   },
   {
     title: 'Общая экосистема участников',
     status: 'MVP-проект',
     description: 'Единая среда для коммуникации и кооперации: рабочие группы, запросы, проекты, календарь активностей.',
     icon: Rocket,
-    progress: 45,
+    deadline: 'I кв. 2026 (план)',
   },
 ];
 
@@ -87,9 +95,9 @@ function DotPattern({ className = '' }: { className?: string }) {
 export function Achievements() {
   return (
     <section className="py-24 relative overflow-hidden" id="projects">
-      <div className="absolute inset-0 bg-[#151515]" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#5F68A5]/50 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#5F891D]/50 to-transparent" />
+      <div className="absolute inset-0 bg-[#F3F4E9]" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#151515]/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#151515]/10 to-transparent" />
 
       <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-[#5F68A5]/5 blur-3xl" />
       <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-[#5F891D]/5 blur-3xl" />
@@ -105,7 +113,7 @@ export function Achievements() {
             <div className="h-px flex-1 max-w-16 bg-[#5F68A5]" />
             <span className="text-[#5F68A5] text-sm tracking-[0.3em] uppercase font-medium">Достижения и проекты</span>
           </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#F3F4E9] font-bebas tracking-tight">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#151515] font-bebas tracking-tight">
             Реальные шаги в развитии экосистемы
           </h2>
         </motion.div>
@@ -118,13 +126,13 @@ export function Achievements() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-8 lg:row-span-2 group"
           >
-            <div className="relative h-full min-h-[520px] rounded-2xl overflow-hidden bg-[#1a1a1a] border border-white/5">
+            <div className="relative h-full min-h-[520px] rounded-2xl overflow-hidden bg-white border border-[#151515]/10 shadow-sm">
               <ImageWithFallback
                 src={achievements[0].image}
                 alt={achievements[0].title}
-                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700"
+                className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/65 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/55 to-transparent" />
 
               <div className="absolute top-6 right-6 text-[#5F891D]/40 hidden sm:block">
                 <DotPattern />
@@ -132,8 +140,8 @@ export function Achievements() {
 
               {achievements[0].highlight && (
                 <div className="absolute top-6 left-6">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#5F891D] text-[#151515] text-xs font-bold uppercase tracking-wider rounded-full">
-                    <span className="w-2 h-2 bg-[#151515] rounded-full animate-pulse" />
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3F4E9]/90 border border-white/30 text-[#151515] text-xs font-bold uppercase tracking-wider rounded-full">
+                    <span className="w-2 h-2 bg-[#5F891D] rounded-full animate-pulse" />
                     {achievements[0].highlight}
                   </span>
                 </div>
@@ -178,20 +186,20 @@ export function Achievements() {
               transition={{ duration: 0.6, delay: 0.1 + idx * 0.1 }}
               className="lg:col-span-4 group"
             >
-              <div className="relative h-full min-h-[250px] rounded-2xl overflow-hidden bg-[#1a1a1a] border border-white/5 hover:border-[#5F68A5]/30 transition-colors">
+              <div className="relative h-full min-h-[250px] rounded-2xl overflow-hidden bg-white border border-[#151515]/10 hover:border-[#151515]/20 hover:shadow-md transition-all">
                 <ImageWithFallback
                   src={item.image}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                  className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-35 transition-opacity duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/80 to-[#151515]/60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/60" />
 
                 <div className="relative h-full p-6 flex flex-col justify-end">
                   <span className="text-[#5F68A5] text-xs font-semibold tracking-wider uppercase mb-2">{item.date}</span>
-                  <h3 className="text-lg font-bold text-[#F3F4E9] mb-2 font-bebas tracking-wide leading-tight">{item.title}</h3>
-                  <p className="text-[#F3F4E9]/65 text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="text-lg font-bold text-[#151515] mb-2 font-bebas tracking-wide leading-tight">{item.title}</h3>
+                  <p className="text-[#151515]/70 text-sm leading-relaxed">{item.description}</p>
 
-                  <div className="mt-4 flex flex-wrap items-center gap-3 text-[#F3F4E9]/50 text-xs">
+                  <div className="mt-4 flex flex-wrap items-center gap-3 text-[#151515]/55 text-xs">
                     <span className="flex items-center gap-2">
                       <MapPin className="w-3 h-3" />
                       {item.location}
@@ -216,8 +224,8 @@ export function Achievements() {
             viewport={{ once: true }}
             className="flex items-center gap-4 mb-12"
           >
-            <h3 className="text-3xl md:text-4xl font-bold text-[#F3F4E9] font-bebas tracking-wide">Текущие проекты</h3>
-            <div className="h-px flex-1 bg-white/10" />
+            <h3 className="text-3xl md:text-4xl font-bold text-[#151515] font-bebas tracking-wide">Текущие проекты</h3>
+            <div className="h-px flex-1 bg-[#151515]/10" />
           </motion.div>
 
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -232,33 +240,19 @@ export function Achievements() {
                   transition={{ delay: index * 0.12 }}
                   className="group"
                 >
-                  <div className="relative p-6 rounded-2xl bg-[#1a1a1a] border border-white/5 hover:border-[#5F68A5]/30 transition-all duration-300 h-full">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-white/5 rounded-t-2xl overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${project.progress}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.4 + index * 0.08 }}
-                        className="h-full bg-gradient-to-r from-[#5F68A5] to-[#5F891D]"
-                      />
-                    </div>
-
-                    <div className="mb-5 flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-xl bg-[#5F68A5]/10 flex items-center justify-center text-[#5F68A5] group-hover:bg-[#5F68A5] group-hover:text-[#151515] transition-all duration-300">
+                  <div className="relative p-6 rounded-2xl bg-white border border-[#151515]/10 hover:border-[#151515]/20 hover:shadow-md transition-all duration-300 h-full">
+                    <div className="mb-5 flex items-start justify-between gap-4">
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#5F68A514', color: '#5F68A5' }}>
                         <Icon className="w-6 h-6" />
                       </div>
-                      <span className="text-xs font-mono text-[#5F891D]">{project.progress}%</span>
-                    </div>
-
-                    <div className="mb-3">
-                      <span className="inline-flex items-center gap-2 text-xs text-[#F3F4E9]/50">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#5F891D] animate-pulse" />
-                        {project.status}
+                      <span className="inline-flex items-center gap-2 text-xs font-medium text-[#151515]/70 bg-[#F3F4E9] border border-[#151515]/10 px-3 py-1.5 rounded-full">
+                        <Calendar className="w-3.5 h-3.5" />
+                        Дедлайн: {project.deadline}
                       </span>
                     </div>
 
-                    <h4 className="text-xl font-bold text-[#F3F4E9] mb-2 font-bebas tracking-wide">{project.title}</h4>
-                    <p className="text-sm text-[#F3F4E9]/62 leading-relaxed">{project.description}</p>
+                    <h4 className="text-xl font-bold text-[#151515] mb-2 font-bebas tracking-wide">{project.title}</h4>
+                    <p className="text-sm text-[#151515]/70 leading-relaxed">{project.description}</p>
                   </div>
                 </motion.div>
               );
@@ -274,7 +268,7 @@ export function Achievements() {
         >
           <a
             href="#documents"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 text-[#F3F4E9]/65 hover:border-[#5F68A5]/50 hover:text-[#F3F4E9] transition-all"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#151515]/15 text-[#151515]/70 hover:border-[#5F68A5]/40 hover:text-[#151515] transition-all bg-white/60"
           >
             <span className="text-sm">Документы, регламенты и материалы по проектам</span>
             <ArrowUpRight className="w-4 h-4" />

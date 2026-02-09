@@ -5,18 +5,33 @@ import logo from '../../../logos/Logo-ACI-RUS.ver1.svg';
 
 const navItems = [
   { label: 'О нас', href: '#about' },
-  { label: 'Цели', href: '#goals' },
-  { label: 'Вызовы', href: '#challenges' },
-  { label: 'Аудитория', href: '#audience' },
-  { label: 'Подкомитеты', href: '#directions' },
-  { label: 'Приоритеты', href: '#priorities' },
+  { label: 'Направления', href: '#directions' },
+  { label: 'Членство', href: '#membership' },
   { label: 'Проекты', href: '#projects' },
-  { label: 'Документы', href: '#documents' },
+  { label: 'Контакты', href: '#contact' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#')) return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    event.preventDefault();
+    setMobileMenuOpen(false);
+    const headerOffset = 88;
+    const y = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,36 +53,40 @@ export function Header() {
       >
         <div className="container mx-auto px-3 sm:px-4">
           <div className="flex items-center justify-between h-18 sm:h-20">
-            <a href="#about" className="flex items-center gap-3 min-w-0 flex-1 pr-3">
+            <a href="#about" className="flex items-center" onClick={(e) => handleAnchorClick(e, "#about")}>
               <img
                 src={logo}
                 alt="Ассоциация Цифровых Технологий и Инноваций Кибер Инновации"
-                className="h-10 sm:h-12 md:h-14 w-auto max-w-[170px] sm:max-w-[220px] md:max-w-[340px] object-contain"
+                className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+                style={{ minHeight: '2rem' }}
               />
             </a>
 
-            <nav className="hidden xl:flex items-center gap-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="relative px-3 py-2 text-sm text-[#F3F4E9]/80 hover:text-[#F3F4E9] transition-colors group"
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-3 right-3 h-px bg-[#5F891D] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                </a>
-              ))}
+            <nav className="hidden xl:flex items-center justify-center flex-1">
+              <div className="flex items-center gap-8">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => handleAnchorClick(e, item.href)}
+                    className="relative px-3 py-2 text-sm text-[#F3F4E9]/80 hover:text-[#F3F4E9] transition-colors group"
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-[#5F891D] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                  </a>
+                ))}
+              </div>
             </nav>
 
-            <div className="hidden xl:flex items-center gap-4">
+            <div className="hidden xl:flex items-center">
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
                   scrolled
-                    ? 'bg-[#5F891D] text-[#151515] hover:bg-[#5F891D]/90'
-                    : 'bg-[#F3F4E9] text-[#151515] hover:bg-white'
+                    ? 'bg-[#5F891D] text-[#151515] hover:bg-[#5F891D]/90 shadow-lg shadow-[#5F891D]/20'
+                    : 'bg-white text-[#151515] hover:bg-white'
                 }`}
               >
                 <span>Подать заявку</span>
@@ -133,7 +152,7 @@ export function Header() {
               >
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-3 px-7 py-4 bg-[#5F891D] text-[#151515] font-bold rounded-full"
+                  className="inline-flex items-center gap-3 px-7 py-4 bg-white text-[#151515] font-bold rounded-full"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span>Подать заявку</span>

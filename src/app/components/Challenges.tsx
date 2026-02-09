@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, Server, Users, Lightbulb, DollarSign, Layers } from 'lucide-react';
+import { ChevronRight, Server, Users, Lightbulb, DollarSign, Layers, Quote } from 'lucide-react';
 
 interface Challenge {
   title: string;
@@ -84,9 +84,14 @@ export function Challenges() {
               <br />
               <span className="text-[#5F891D]">как национальная задача</span>
             </h2>
-            <p className="text-base lg:text-lg text-[#151515]/70 leading-relaxed max-w-xl">
-              Пять контуров работы Ассоциации: переводим стратегию в конкретные проекты, стандарты и механики внедрения.
-            </p>
+            <div className="rounded-2xl border border-[#151515]/10 border-l-4 border-l-[#5F68A5] bg-white/80 backdrop-blur p-5 md:p-6 relative overflow-hidden">
+              <p className="text-xs tracking-[0.24em] uppercase text-[#151515]/45 font-medium mb-2">Ключевой тезис</p>
+              <Quote className="absolute -top-6 -right-6 w-24 h-24 text-[#5F68A5]/10 rotate-12" />
+              <p className="text-base lg:text-lg text-[#151515]/75 leading-relaxed">
+                <span className="font-semibold text-[#151515]">5 контуров работы Ассоциации:</span> от перевода Стратегии в
+                конкретные проекты до стандартных механик внедрения.
+              </p>
+            </div>
           </div>
         </motion.div>
 
@@ -113,34 +118,40 @@ export function Challenges() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className={isExpanded ? 'lg:col-span-2' : ''}
+                className={
+                  isExpanded
+                    ? 'lg:col-span-2'
+                    : index === challenges.length - 1
+                      ? 'lg:col-span-2 lg:max-w-[860px] lg:mx-auto'
+                      : ''
+                }
               >
                 <div
                   className={`
                     relative rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer h-full
                     ${
                       isExpanded
-                        ? 'bg-[#151515] text-[#F3F4E9]'
-                        : 'bg-white hover:bg-[#151515]/5 border border-[#151515]/10'
+                        ? 'bg-white border border-[#151515]/10 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.35)]'
+                        : 'bg-white hover:bg-[#151515]/5 border border-[#151515]/10 hover:shadow-lg'
                     }
                   `}
                   onClick={() => setExpandedIndex(isExpanded ? null : index)}
                 >
                   <div
-                    className={`absolute top-0 right-0 w-16 h-16 flex items-start justify-end p-3 font-bebas text-5xl leading-none transition-colors duration-500 ${
-                      isExpanded ? 'text-white/10' : 'text-[#151515]/5'
+                    className={`absolute top-0 right-0 w-16 h-16 flex items-start justify-end p-3 font-bebas text-5xl leading-none transition-colors duration-500 pointer-events-none z-0 ${
+                      isExpanded ? 'text-[#151515]/6' : 'text-[#151515]/5'
                     }`}
                   >
                     {String(index + 1).padStart(2, '0')}
                   </div>
 
-                  <div className="p-5 md:p-6">
+                  <div className="p-5 md:p-6 pr-20 md:pr-24 relative z-10">
                     <div className="flex items-start gap-4">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500"
                         style={{
-                          backgroundColor: isExpanded ? `${challenge.accent}35` : `${challenge.accent}15`,
-                          color: isExpanded ? '#F3F4E9' : challenge.accent,
+                          backgroundColor: isExpanded ? `${challenge.accent}18` : `${challenge.accent}12`,
+                          color: challenge.accent,
                         }}
                       >
                         <Icon className="w-6 h-6" />
@@ -148,11 +159,7 @@ export function Challenges() {
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3 mb-3">
-                          <h3
-                            className={`text-lg md:text-xl font-bold font-bebas tracking-wide leading-tight transition-colors duration-500 ${
-                              isExpanded ? 'text-[#F3F4E9]' : 'text-[#151515]'
-                            }`}
-                          >
+                          <h3 className="text-lg md:text-xl font-bold font-bebas tracking-wide leading-tight text-[#151515]">
                             {challenge.title}
                           </h3>
                           <motion.div
@@ -161,17 +168,14 @@ export function Challenges() {
                             className="flex-shrink-0 mt-1"
                           >
                             <ChevronRight
-                              className={`w-5 h-5 transition-colors duration-500 ${
-                                isExpanded ? 'text-[#F3F4E9]/60' : 'text-[#151515]/40'
-                              }`}
+                              className="w-5 h-5 text-[#151515]/35 transition-colors duration-500"
+                              style={{ color: isExpanded ? challenge.accent : undefined }}
                             />
                           </motion.div>
                         </div>
 
                         <p
-                          className={`text-sm leading-relaxed transition-colors duration-500 ${
-                            isExpanded ? 'text-[#F3F4E9]/70' : 'text-[#151515]/60'
-                          }`}
+                          className="text-sm leading-relaxed text-[#151515]/65"
                         >
                           {challenge.shortDesc}
                         </p>
@@ -185,8 +189,8 @@ export function Challenges() {
                               transition={{ duration: 0.4, ease: 'easeInOut' }}
                               className="overflow-hidden"
                             >
-                              <div className="pt-4 mt-4 border-t border-white/10">
-                                <p className="text-[#F3F4E9]/85 leading-relaxed text-sm">{challenge.fullDesc}</p>
+                              <div className="pt-4 mt-4 border-t border-[#151515]/10">
+                                <p className="text-[#151515]/72 leading-relaxed text-sm">{challenge.fullDesc}</p>
                               </div>
                             </motion.div>
                           )}

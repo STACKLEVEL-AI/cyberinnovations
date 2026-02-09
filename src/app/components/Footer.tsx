@@ -4,6 +4,15 @@ import logo from '../../../logos/Logo-ACI-RUS.ver1.svg';
 import { withBasePath } from '../utils/withBasePath';
 
 export function Footer() {
+  const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#')) return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    event.preventDefault();
+    const headerOffset = 88;
+    const y = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
   const currentYear = new Date().getFullYear();
   const presentationPdf = withBasePath('/materials/assosiation-3.pdf');
 
@@ -31,7 +40,8 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden">
-      <div className="bg-[#5F891D]">
+      <div className="relative bg-[#F3F4E9]">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#5F891D]/20 via-transparent to-[#5F68A5]/10 pointer-events-none" />
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div>
@@ -39,14 +49,15 @@ export function Footer() {
                 Готовы к совместным инициативам?
               </h3>
               <p className="text-[#151515]/75 max-w-2xl">
-                Подключайтесь к экосистеме Ассоциации для реализации проектов в Беларуси и на международном уровне.
+                Оставьте заявку — подключим к проектам, подкомитетам и партнёрским инициативам.
               </p>
             </div>
             <motion.a
               href="#contact"
+              onClick={(e) => handleAnchorClick(e, "#contact")}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#151515] text-[#F3F4E9] font-bold rounded-full hover:bg-[#151515]/90 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#5F891D] text-[#151515] font-bold rounded-full hover:bg-[#5F891D]/90 transition-colors shadow-lg w-full sm:w-auto"
             >
               <span>Подать заявку</span>
               <ArrowUpRight className="w-5 h-5" />
@@ -59,13 +70,14 @@ export function Footer() {
         <div className="container mx-auto px-4 py-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-12 mb-14">
             <div className="lg:col-span-4">
-              <div className="flex items-center gap-3 mb-6">
-                <img src={logo} alt="Кибер Инновации" className="h-12 w-auto" />
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <img
+                  src={logo}
+                  alt="Кибер Инновации"
+                  className="h-32 w-auto object-contain my-auto"
+                  style={{ minHeight: '10rem' }}
+                />
               </div>
-              <p className="text-[#F3F4E9]/62 leading-relaxed mb-6">
-                Ассоциация Цифровых Технологий и Инноваций «Кибер Инновации» — платформа координации государства,
-                науки и бизнеса для развития технологического суверенитета Республики Беларусь.
-              </p>
 
               <a
                 href={presentationPdf}
@@ -85,6 +97,7 @@ export function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
+                      onClick={(e) => handleAnchorClick(e, link.href)}
                       className="text-[#F3F4E9]/62 hover:text-[#5F891D] transition-colors inline-flex items-center gap-2 group"
                     >
                       <span>{link.label}</span>
@@ -147,14 +160,6 @@ export function Footer() {
                 Условия использования
               </a>
             </div>
-          </div>
-        </div>
-
-        <div className="border-t border-white/5 py-8 overflow-hidden">
-          <div className="container mx-auto px-4">
-            <p className="text-[8vw] md:text-[6vw] font-bebas text-white/[0.03] leading-none tracking-tight whitespace-nowrap">
-              CYBER INNOVATIONS • TECHNOLOGY SOVEREIGNTY • BELARUS
-            </p>
           </div>
         </div>
       </div>

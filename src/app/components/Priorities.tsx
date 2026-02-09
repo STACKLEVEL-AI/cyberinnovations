@@ -72,7 +72,7 @@ export function Priorities() {
     <section className="py-24 relative overflow-hidden" id="priorities">
       <div className="absolute inset-0 bg-[#F3F4E9]" />
 
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-20">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -108,20 +108,20 @@ export function Priorities() {
             viewport={{ once: true }}
             className="flex justify-start lg:justify-end"
           >
-            <div className="inline-flex flex-col sm:flex-row bg-[#151515] rounded-2xl sm:rounded-full p-1.5 w-full sm:w-auto">
+            <div className="inline-flex flex-col sm:flex-row bg-white/70 backdrop-blur rounded-2xl sm:rounded-full p-1.5 w-full sm:w-auto border border-[#151515]/10 shadow-sm">
               {(['2026', '2030'] as const).map((year) => (
                 <button
                   key={year}
                   onClick={() => setActiveTab(year)}
                   className={`
                     relative px-5 sm:px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 w-full sm:w-auto
-                    ${activeTab === year ? 'text-[#151515]' : 'text-[#F3F4E9]/60 hover:text-[#F3F4E9]'}
+                    ${activeTab === year ? 'text-[#151515]' : 'text-[#151515]/55 hover:text-[#151515]'}
                   `}
                 >
                   {activeTab === year && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-[#5F891D] rounded-full"
+                      className="absolute inset-0 bg-[#5F891D]/20 rounded-full border border-[#5F891D]/25"
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -167,13 +167,13 @@ export function Priorities() {
                     relative h-full rounded-2xl p-8 transition-all duration-300 overflow-hidden
                     ${
                       priority.highlight
-                        ? 'bg-[#151515] text-[#F3F4E9]'
+                        ? 'bg-white border border-[#151515]/10 shadow-lg'
                         : 'bg-white border border-[#151515]/10 hover:border-[#151515]/20 hover:shadow-xl'
                     }
                   `}
                 >
                   {priority.highlight && (
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#5F68A5]/20 via-transparent to-[#5F891D]/20" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#5F68A5]/10 via-transparent to-[#5F891D]/10" />
                   )}
 
                   {priority.metric && (
@@ -191,14 +191,10 @@ export function Priorities() {
                       <Icon className="w-7 h-7" />
                     </div>
 
-                    <h4
-                      className={`text-xl md:text-2xl font-bold mb-3 font-bebas tracking-wide max-w-[85%] ${
-                        priority.highlight ? 'text-[#F3F4E9]' : 'text-[#151515]'
-                      }`}
-                    >
+                    <h4 className="text-xl md:text-2xl font-bold mb-3 font-bebas tracking-wide max-w-[85%] text-[#151515]">
                       {priority.title}
                     </h4>
-                    <p className={`leading-relaxed ${priority.highlight ? 'text-[#F3F4E9]/72' : 'text-[#151515]/65'}`}>
+                    <p className={`leading-relaxed text-[#151515]/65`}>
                       {priority.description}
                     </p>
 
