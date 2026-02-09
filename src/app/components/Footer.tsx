@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, ArrowUpRight } from 'lucide-react';
-import logo from '../../../logos/Logo-ACI-RUS.ver2.svg';
+import logo from '../../../logos/Logo-ACI-RUS.ver1.svg';
 import { withBasePath } from '../utils/withBasePath';
 
 export function Footer() {

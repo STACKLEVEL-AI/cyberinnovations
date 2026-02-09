@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
-import logo from '../../../logos/Logo-ACI-RUS.ver2.svg';
+import logo from '../../../logos/Logo-ACI-RUS.ver1.svg';
 
 const navItems = [
   { label: 'О нас', href: '#about' },
